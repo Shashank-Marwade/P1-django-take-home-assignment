@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #0d6efd;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        a {
+            padding: 10px 20px;
+            background-color: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nearest Food Trucks</h1>
+    <table>
+        <tr>
+            <th>Applicant</th>
+            <th>Address</th>
+            <th>Distance (km)</th>
+            <th>Available At</th>
+        </tr>
+        {% for location in locations %}
+        <tr>
+            <td>{{ location.Applicant }}</td>
+            <td>{{ location.Address }}</td>
+            <td>{{ location.Distance|floatformat:2 }}</td>
+            <td>{{ location.dayshours|default_if_none:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="center">
+        <a href="{% url 'show_map' %}">New Search</a>
+    </div>
+</body>
+</html>

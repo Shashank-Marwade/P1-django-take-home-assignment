@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nearest Food Trucks</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        h1 {
+            color: #0d6efd;
+            text-align: center;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        #mapid {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px; 
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .search-bar input, .search-bar button {
+            padding: 10px;
+            margin: 0 5px; 
+        }
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nearest Food Trucks</h1>
+    <div class="search-bar">
+        <input type="text" id="latitude" name="latitude" placeholder="Latitude" required>
+        <input type="text" id="longitude" name="longitude" placeholder="Longitude" required>
+        <button onclick="submitLocation()">Search</button>
+    </div>
+    <div id="mapid"></div>
+    <script>
+        var map = L.map('mapid').setView([37.7749, -122.4194], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        var marker = L.marker([37.7749, -122.4194], {draggable: true}).addTo(map);
+
+        marker.on('dragend', function() {
+            var latlng = marker.getLatLng();
+            document.getElementById('latitude').value = latlng.lat.toFixed(5);
+            document.getElementById('longitude').value = latlng.lng.toFixed(5);
+        });
+
+        function submitLocation() {
+            var latitude = document.getElementById('latitude').value;
+            var longitude = document.getElementById('longitude').value;
+            window.location.href = `/?latitude=${latitude}&longitude=${longitude}`;
+        }
+
+        // Ensure inputs control the marker
+        document.getElementById('latitude').addEventListener('change', function() {
+            updateMarker();
+        });
+        document.getElementById('longitude').addEventListener('change', function() {
+            updateMarker();
+        });
+
+        function updateMarker() {
+            var newLat = parseFloat(document.getElementById('latitude').value);
+            var newLng = parseFloat(document.getElementById('longitude').value);
+            var newLatLng = new L.LatLng(newLat, newLng);
+            marker.setLatLng(newLatLng);
+            map.panTo(newLatLng);
+        }
+    </script>
+</body>
+</html>
