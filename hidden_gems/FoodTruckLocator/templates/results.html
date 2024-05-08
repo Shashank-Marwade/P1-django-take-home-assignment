@@ -65,7 +65,7 @@
             <td>{{ location.Applicant }}</td>
             <td>{{ location.Address }}</td>
             <td>{{ location.Distance|floatformat:2 }}</td>
-            <td>{{ location.dayshours|default_if_none:"-" }}</td>
+            <td>{{ location.dayshours }}</td>
         </tr>
         {% endfor %}
     </table>
