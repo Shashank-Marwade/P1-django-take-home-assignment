@@ -43,6 +43,8 @@ Welcome to "Hidden Gems," a Django-based application designed to help you find f
 
 - **Web Interface**: A Leaflet map that visualizes food trucks near a specified location.
 - **Command Line Interface (CLI)**: Provides a quick lookup to find nearby food trucks based on user-input latitude and longitude.
+- **Logging**: The application incorporates a robust logging system to capture and record key events and errors. This feature is critical for troubleshooting, maintenance, and ensuring the reliability of the application over time. Logs can help track down issues such as unexpected data values, like NaNs, or operational problems.
+
 
 ## 🛠️ Technology Stack
 
