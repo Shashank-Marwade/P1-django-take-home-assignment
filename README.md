@@ -77,9 +77,9 @@ Each part of the application and script is well-commented to explain the functio
 
 ## 🔄 If I Had More Time
 
-Testing: Implement a full suite of unit and integration tests to ensure reliability and facilitate future updates.
-User Authentication: Add user management to save favorite trucks and preferences.
-Enhanced UI: More interactive elements and better design practices could be applied to the frontend.
+- Testing: Implement a full suite of unit and integration tests to ensure reliability and facilitate future updates.
+- User Authentication: Add user management to save favorite trucks and preferences.
+- Enhanced UI: More interactive elements and better design practices could be applied to the frontend.
 
 ## 📬 Submission
 
